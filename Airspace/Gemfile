@@ -60,3 +60,15 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'geocoder'
 
 gem 'jquery-rails'
+
+gem 'sinatra'
+
+gem 'faker'
+
+gem 'factory_girl'
+gem 'pry-byebug'
+gem 'factory_bot'
+
+group :test do
+  gem 'rspec'
+end
