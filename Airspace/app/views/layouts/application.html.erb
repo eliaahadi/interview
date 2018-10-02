@@ -10,9 +10,17 @@
   
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCi1CV3zcdjqU4kYxm3x9cD2fbreWE6x-E&callback=initMap"
     async defer></script>
+  
+ 
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg.html_safe, class: "alert alert-#{name}") %>
+      <% end %>
+
+      <%= yield %>
+    </div>
   </body>
 </html>

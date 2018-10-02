@@ -1,10 +1,11 @@
 class Place < ApplicationRecord
-  geocoded_by :address, latitude: :lat, longitude: :lon
-  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   attr_accessor :raw_address
 
   geocoded_by :raw_address
+
+  reverse_geocoded_by :latitude, :longitude
+
   after_validation -> {
     self.address = self.raw_address
     geocode

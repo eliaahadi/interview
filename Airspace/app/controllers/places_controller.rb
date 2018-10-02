@@ -7,6 +7,10 @@ class PlacesController < ApplicationController
     @place = Place.new
   end
 
+  def show
+    @place = Place.find(params[:id])
+  end
+
   def create
     @place = Place.new(place_params)
     if @place.save
@@ -17,15 +21,7 @@ class PlacesController < ApplicationController
     end
   end
 
-  def show
-    @place = Place.find(params[:id])
-  end
-
   private
-
-  def place_params
-    params.require(:place).permit(:title, :address, :visited_by)
-  end
 
   def place_params
     params.require(:place).permit(:title, :raw_address, :latitude, :longitude, :visited_by)
