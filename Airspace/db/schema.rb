@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2018_10_02_172354) do
     t.text "address"
     t.float "latitude"
     t.float "longitude"
-    t.string "visited_by"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

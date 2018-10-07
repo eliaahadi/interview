@@ -3,12 +3,12 @@ class PlacesController < ApplicationController
     @places = Place.order('created_at DESC')
   end
 
-  def new
-    @place = Place.new
-  end
-
   def show
     @place = Place.find(params[:id])
+  end
+
+  def new
+    @place = Place.new
   end
 
   def create

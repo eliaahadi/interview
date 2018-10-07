@@ -65,7 +65,7 @@ gem 'sinatra'
 
 gem 'faker'
 
-gem 'factory_girl'
+# gem 'factory_girls'
 gem 'pry-byebug'
 gem 'factory_bot'
 
