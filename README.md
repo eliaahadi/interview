@@ -7,9 +7,12 @@ at all please shoot us an email and we'll reply as soon as we can.
 ## Get started
 Assuming you have a working Ruby environment, from the repo root do:
 
-1. `bundle install`
-2. `rackup -p 4567`
-3. Browse to [http://localhost:4567](http://localhost:4567)
+1. `cd app`
+2. `bundle install`
+3. `rake db:migrate`
+4. `rake db:seed`
+5. `rackup -p 4567`
+6. Browse to [http://localhost:4567](http://localhost:4567)
 
 Upon success you'll have a working [Sinatra](https://github.com/sinatra/sinatra) application to play with.
 
@@ -38,3 +41,6 @@ Use [Bootstrap](https://getbootstrap.com/) to make the page from task #1 look be
 Calculate the distance between each of the above coordinates and The White House, which is located at
 **1600 Pennsylvania Avenue NW Washington, D.C. 20500**. Update the web page from task #2 to list each address and its
 determined distance in ascending order.
+
+### Comments
+I got the app working. The tests were created and worked but not consistently. Please let me know if you have any questions.
