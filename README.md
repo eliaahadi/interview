@@ -7,7 +7,7 @@ at all please shoot us an email and we'll reply as soon as we can.
 ## Get started
 Assuming you have a working Ruby environment, from the repo root do:
 
-1. `cd app`
+1. `cd Airspace/app`
 2. `bundle install`
 3. `rake db:migrate`
 4. `rake db:seed`
