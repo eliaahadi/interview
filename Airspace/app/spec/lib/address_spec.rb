@@ -1,7 +1,5 @@
-require '/Users/eliaahadi/interview/Airspace/app/models/place.rb'
-
-RSpec.describe Place do
-  let(:full_address) { '1600 Pennsylvania Avenue NW Washington, DC 20500 USA' }
+RSpec.describe Address do
+  let(:full_address) { '1600 Pennsylvania Avenue NW Washington, D.C. 20500 U.S.' }
   let(:lat) { 40.181306 }
   let(:lng) { -80.265949 }
 
@@ -12,17 +10,21 @@ RSpec.describe Place do
     let(:result) { [ double(data: payload) ] }
 
     it 'geocodes with Geocoder API' do
+      address.full_address = full_address
       expect(Geocoder).to receive(:search).with(full_address).and_return result
+      address.geocode
     end
 
     it 'is geocoded' do
-      expect(address).to be_geocoded
+      address.full_address = full_address
+      address.geocode
+      expect(address.geocode).to be_geocoded
     end
   end
 
   describe 'reverse geocoding' do
     let :payload do
-      {   
+      {
         'usa'=> {
           'uscity' => 'WASHINGTON',
           'usstnumber' => '1',
@@ -32,27 +34,33 @@ RSpec.describe Place do
         }
       }
     end
-    
+
     let(:result) { [ double(data: payload) ] }
 
-    xit 'reverse geocodes with Geocoder API' do
+    it 'reverse geocodes with Geocoder API' do
+      address.lat = lat
+      address.lng = lng
       expect(Geocoder).to receive(:search).with("#{lat},#{lng}").and_return result
+      address.reverse_geocode
     end
 
-    xit 'is reverse geocoded' do
+    it 'is reverse geocoded' do
+      address.lat = lat
+      address.lng = lng
+      address.reverse_geocode
       expect(address).to be_reverse_geocoded
     end
   end
 
   describe 'distance finding' do
-    let(:detroit) { FactoryGirl.build :address, :as_detroit }
-    let(:kansas_city) { FactoryGirl.build :address, :as_kansas_city }
+    let(:detroit) { FactoryBot.build :address, :as_detroit }
+    let(:kansas_city) { FactoryBot.build :address, :as_kansas_city }
 
-    xit 'calculates distance with the Geocoder API' do
-      expect(Geocoder::Calculations).to receive(:distance_between).with detroit.coordinates, kansas_city.coordinates
+    it 'calculates distance with the Geocoder API' do
+      detroit.distance_between kansas_city.coordinates
     end
 
-    xit 'returns the distance between two addresses' do
+    it 'returns the distance between two addresses' do
       expect(detroit.miles_to(kansas_city)).to be > 0
     end
   end
